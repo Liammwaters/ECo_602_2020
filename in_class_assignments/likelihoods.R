@@ -26,3 +26,6 @@ median(dat_all$WIWR)
 #Q3
 
 dbinom(dat_all$WIWR, 6, .75)
+
+
+
