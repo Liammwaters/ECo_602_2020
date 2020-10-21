@@ -2,7 +2,10 @@
 title: "ECO 602 Final Project"
 author: "Liam Waters"
 date: "10/15/2020"
-output: html_document
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -28,3 +31,54 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+# use a single pound sign to create this header
+
+```{r read_bird_data}
+require(here)
+
+dat_birds = read.csv(here("data", "hab.sta.csv"))
+```
+
+
+I can use the head() function to print the first few lines of a data.frame.
+Here's an example with the birds data.
+```{r head_function_demo}
+head(dat_birds)
+```
+
+
+
+
+
+##Demo Plot
+```{r simple_plot}
+hist(dat_birds$aspect)
+
+```
+
+
+
+## How to customize histograms
+
+I can title using the argument main = 
+
+```{r custom histogram 1}
+hist(dat_birds$aspect, main = "Histogram of study site aspect", breaks = 36)
+
+
+```
+
+
+
+## shift ctrl c will comment/uncomment selected code
+
+
+
+
+
+print(dat_birds)
