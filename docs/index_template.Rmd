@@ -1,24 +1,9 @@
----
-title: "ECo 602 - Analysis of Environmental Data"
-subtitle: "Final Project"
-author: "Your Name Here"
-date: "Fall 2020"
-output:
-  html_document:
-    theme: readable
-    toc: TRUE
-    toc_float: TRUE
-editor_options:
-  chunk_output_type: console
----
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 options(knitr.duplicate.label = TRUE)
 ```
-
 
 Everything above this line is the header.
 
@@ -103,21 +88,6 @@ print(char_vec)
 
 Type your data frame example here.
 
-to subset a data frame:
-
-- $columnname if the name is known
-
-```{r data_frame_eg_1}
-dat_1 = data.frame(
-  letters = c("b", "w", "B"),
-  numbers_1 = c(34, 6, 123454)
-)
-
-dat_1$letters
-
-```
-
-
 ## `matrix()`
 
 Type your matrix example here.
@@ -150,29 +120,6 @@ Type your matrix example here.
 See the final project description for a list of the required functions.
 
 
-## `plot()` 
-
-I can use `plot()` to create scatterplots!
-
-```{r scatterplot_1, fig.asp=1.0}
-
-#to load a package, use `require()`
-require(palmerpenguins)
-
-#formula notation
-
-plot(bill_length_mm ~ body_mass_g, data = penguins, pch = 16)
-
-
-```
-
-
-
-
-
-
-
-
 
 # Functions 4: Distribution Functions {.tabset .tabset-pills}
 
@@ -189,73 +136,4 @@ See the final project description for a list of the required functions.
 
 # Part 2: Data Anaylsis
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
-
-
-
-# use a single pound sign to create this header
-
-```{r read_bird_data}
-require(here)
-
-dat_birds = read.csv(here("data", "hab.sta.csv"))
-```
-
-
-I can use the head() function to print the first few lines of a data.frame.
-Here's an example with the birds data.
-```{r head_function_demo}
-head(dat_birds)
-```
-
-
-
-
-
-##Demo Plot
-```{r simple_plot}
-hist(dat_birds$aspect)
-
-```
-
-
-
-## How to customize histograms
-
-I can title using the argument main = 
-
-```{r custom histogram 1}
-hist(dat_birds$aspect, main = "Histogram of study site aspect", breaks = 36)
-
-
-```
-
-
-
-## shift ctrl c will comment/uncomment selected code
-
-
-
-
-
-print(dat_birds)
+Your data analysis materials will go here.
