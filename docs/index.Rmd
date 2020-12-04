@@ -322,7 +322,7 @@ boxplot(
 
 # Functions 4: Distribution Functions {.tabset .tabset-pills}
 
-These are all closely related functions, the first set for normally distributed data, the second set for binomially distributed data.
+These are all closely related functions, the first set is for normally distributed data, the second set is for binomially distributed data.
 
 ## `dnorm()`
 
@@ -351,7 +351,41 @@ Gives the quantiles
 
 # Functions 5: Other Functions {.tabset .tabset-pills}
 
-See the final project description for a list of the required functions.
+These are some of the other useful functions that we learned how to use in class.
+
+## `subset()`
+
+Displays a subset of a an object. Can be used on a vector, matrix, or data frame. Arguments take boolean phrases, but they aren't required. Does need to include the data and a logical expression that indicates either what to keep or what to exclude.
+
+```{r subset_eg_1}
+#load data
+require(palmerpenguins)
+
+#the penguins data has three species: Adelie, Chinstrap, and Gentoo
+summary(penguins$species)
+
+#this subsets the penguin data to include only values associated with the species "Gentoo" and writes it to a new object. The "==" means a logical exact match.
+dat_gen = subset(penguins, species == "Gentoo")
+
+#the same command now shows only Gentoo for species
+summary(dat_gen$species)
+```
+
+
+## `library()` and `require()`
+
+These have already come up in previous code examples. Both `library()` and `require()` load R packages that have already been installed with `install.packages()` so that they can be accessed for use. `library()` returns an error if the package isn't installed and `require()` returns a warning.
+
+```{r require_eg_1}
+
+require(palmerpenguins)
+
+library(pillar)
+```
+
+
+
+## `read.csv()`
 
 
 
