@@ -52,7 +52,7 @@ Edit this template to fill in your own content.
 
 # Introduction
 
-Type a brief introduction here.
+This is an overview of most of the r stats features that were covered in ECo 602/634 and how to use them.
 
 
 # Functions 1: Data Structure Functions {.tabset .tabset-pills}
@@ -69,8 +69,6 @@ This creates tabbed content for all the following sections that are one-level be
 
 
 ## `c()`
-
-The following is the markdown text needed to reproduce my code example for `c()`:
 
 
 The function `c()` *combines* or *concatenates* its arguments into a vector (a 1-dimensional data structure consisting of 1 or more elements).
@@ -101,11 +99,14 @@ print(char_vec)
 
 ## `data.frame()`
 
-Type your data frame example here.
+A dataframe stores data in a table of variables. The most common way of getting data into a data frame is through the `read.csv()` function, but if you have data that is in another format the `data.frame()` function converts that data into a data frame. The data columns have to have the same number of attributes and the data within each has to be the same type.
 
-to subset a data frame:
+
+To subset a data frame:
 
 - $columnname if the name is known
+- The `str()` function can be used to show the names of the columns
+
 
 ```{r data_frame_eg_1}
 dat_1 = data.frame(
@@ -115,39 +116,144 @@ dat_1 = data.frame(
 
 dat_1$letters
 
+str(dat_1)
+
 ```
 
 
 ## `matrix()`
 
-Type your matrix example here.
+Creates a matrix from the given data. `nrow = ` gives the number of rows the data should be divided into. If the data doesn't divide evenly, values are repeated from the start. `byrow = TRUE` can be used to order the data by row instead of columns (default).
+
+```{r matrix_eg_1}
+mat_1 = matrix(1:25, nrow = 4)
+
+mat_1
+```
+
 
 
 ## `length()`
 
+Returns the legnth of whatever object was defined. Works on basically all types of values though typically most useful for vectors.
+
+```{r length_eg_1}
+num_vec
+length(num_vec)
+
+```
+
+
 
 ## `nrow()`
+
+Returns the number of rows present in an object. 
+
+```{r nrow_eg_1}
+nrow(dat_1)
+
+```
+
 
 
 ## `ncol()`
 
+Returns the number of columns present in an object.
+
+```{r ncol_eg_1}
+ncol(dat_1)
+
+```
+
+
 
 ## `dim()`
+
+Returns the dimensions of an object. The first number is the number of rows and the second number is the number of columns.
+
+```{r dim_eg_1}
+dim(mat_1)
+
+```
 
 
 # Functions 2: Numerical Data Exploration  {.tabset .tabset-pills}
 
 ## `summary()`
 
+Summarizes the object and displays the quantiles if applicable.
+
+```{r summary_eg_1}
+summary(dat_1)
+
+```
+
+
 ## `mean()`
+
+Returns the mean of a numerical object.
+
+```{r mean_eg_1}
+mean(num_vec)
+```
+
+
 
 ## `sd()`
  
+Returns the standard deviation of a numerical object. 
+
+```{r sd_eg_1}
+sd(num_vec)
+```
+
+
+
 
 
 # Functions 3: Graphical Data Exploration {.tabset .tabset-pills}
 
-See the final project description for a list of the required functions.
+
+## `par()`
+
+`par()` is used to set graphical parameters. For this class `par()` was always used in conjunction with the argument `mfrow = ` and a `c()` vector to display multiple charts on a single image.
+        
+```{r par_eg_1}
+#creating the data for the first histogram
+n = 30
+mean = 10.4
+sd = 2.4
+norm_30 = rnorm(n, mean, sd)
+
+#creating the data for the second histogram
+n = 300
+mean = 10.4
+sd = 2.4
+norm_300 = rnorm(n, mean, sd)
+
+
+par(mfrow = c(2,1)) #the first number is rows and the second number is columns
+
+hist(norm_30, main = "Histogram of random points n = 30", sub = "mean = 10.4, sd = 2.4")
+hist(norm_300, main = "Histogram of random points n = 300", sub = "mean = 10.4, sd = 2.4")
+```
+
+        
+## `plot()`
+plot() required arguments:
+        col =
+        pch =
+        cex =
+        main =
+        xlab =
+        ylab =
+        xlim =
+        ylim =
+    hist() required arguments:
+        breaks =
+    boxplot()
+        Your must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
+
 
 
 ## `plot()` 

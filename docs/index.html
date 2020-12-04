@@ -1560,7 +1560,7 @@ div.tocify {
 <p>Edit this template to fill in your own content.</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Type a brief introduction here.</p>
+<p>This is an overview of most of the r stats features that were covered in ECo 602/634 and how to use them.</p>
 </div>
 <div id="functions-1-data-structure-functions" class="section level1 tabset tabset-pills">
 <h1>Functions 1: Data Structure Functions</h1>
@@ -1572,7 +1572,6 @@ div.tocify {
 </ul>
 <div id="c" class="section level2">
 <h2><code>c()</code></h2>
-<p>The following is the markdown text needed to reproduce my code example for <code>c()</code>:</p>
 <p>The function <code>c()</code> <em>combines</em> or <em>concatenates</em> its arguments into a vector (a 1-dimensional data structure consisting of 1 or more elements).</p>
 <ul>
 <li>All of the elements must be of the same <em>type</em>.
@@ -1596,10 +1595,11 @@ print(char_vec)</code></pre>
 </div>
 <div id="data.frame" class="section level2">
 <h2><code>data.frame()</code></h2>
-<p>Type your data frame example here.</p>
-<p>to subset a data frame:</p>
+<p>A dataframe stores data in a table of variables. The most common way of getting data into a data frame is through the <code>read.csv()</code> function, but if you have data that is in another format the <code>data.frame()</code> function converts that data into a data frame. The data columns have to have the same number of attributes and the data within each has to be the same type.</p>
+<p>To subset a data frame:</p>
 <ul>
 <li>$columnname if the name is known</li>
+<li>The <code>str()</code> function can be used to show the names of the columns</li>
 </ul>
 <pre class="r"><code>dat_1 = data.frame(
   letters = c(&quot;b&quot;, &quot;w&quot;, &quot;B&quot;),
@@ -1609,34 +1609,75 @@ print(char_vec)</code></pre>
 dat_1$letters</code></pre>
 <pre><code>## [1] b w B
 ## Levels: b B w</code></pre>
+<pre class="r"><code>str(dat_1)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3 obs. of  2 variables:
+##  $ letters  : Factor w/ 3 levels &quot;b&quot;,&quot;B&quot;,&quot;w&quot;: 1 3 2
+##  $ numbers_1: num  34 6 123454</code></pre>
 </div>
 <div id="matrix" class="section level2">
 <h2><code>matrix()</code></h2>
-<p>Type your matrix example here.</p>
+<p>Creates a matrix from the given data. <code>nrow =</code> gives the number of rows the data should be divided into. If the data doesn’t divide evenly, values are repeated from the start. <code>byrow = TRUE</code> can be used to order the data by row instead of columns (default).</p>
+<pre class="r"><code>mat_1 = matrix(1:25, nrow = 4)
+
+mat_1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]    1    5    9   13   17   21   25
+## [2,]    2    6   10   14   18   22    1
+## [3,]    3    7   11   15   19   23    2
+## [4,]    4    8   12   16   20   24    3</code></pre>
 </div>
 <div id="length" class="section level2">
 <h2><code>length()</code></h2>
+<p>Returns the legnth of whatever object was defined. Works on basically all types of values though typically most useful for vectors.</p>
+<pre class="r"><code>num_vec</code></pre>
+<pre><code>## [1]  1  4  8  9 13</code></pre>
+<pre class="r"><code>length(num_vec)</code></pre>
+<pre><code>## [1] 5</code></pre>
 </div>
 <div id="nrow" class="section level2">
 <h2><code>nrow()</code></h2>
+<p>Returns the number of rows present in an object.</p>
+<pre class="r"><code>nrow(dat_1)</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 <div id="ncol" class="section level2">
 <h2><code>ncol()</code></h2>
+<p>Returns the number of columns present in an object.</p>
+<pre class="r"><code>ncol(dat_1)</code></pre>
+<pre><code>## [1] 2</code></pre>
 </div>
 <div id="dim" class="section level2">
 <h2><code>dim()</code></h2>
+<p>Returns the dimensions of an object. The first number is the number of rows and the second number is the number of columns.</p>
+<pre class="r"><code>dim(mat_1)</code></pre>
+<pre><code>## [1] 4 7</code></pre>
 </div>
 </div>
 <div id="functions-2-numerical-data-exploration" class="section level1 tabset tabset-pills">
 <h1>Functions 2: Numerical Data Exploration</h1>
 <div id="summary" class="section level2">
 <h2><code>summary()</code></h2>
+<p>Summarizes the object and displays the quantiles if applicable.</p>
+<pre class="r"><code>summary(dat_1)</code></pre>
+<pre><code>##  letters   numbers_1     
+##  b:1     Min.   :     6  
+##  B:1     1st Qu.:    20  
+##  w:1     Median :    34  
+##          Mean   : 41165  
+##          3rd Qu.: 61744  
+##          Max.   :123454</code></pre>
 </div>
 <div id="mean" class="section level2">
 <h2><code>mean()</code></h2>
+<p>Returns the mean of a numerical object.</p>
+<pre class="r"><code>mean(num_vec)</code></pre>
+<pre><code>## [1] 7</code></pre>
 </div>
 <div id="sd" class="section level2">
 <h2><code>sd()</code></h2>
+<p>Returns the standard deviation of a numerical object.</p>
+<pre class="r"><code>sd(num_vec)</code></pre>
+<pre><code>## [1] 4.636809</code></pre>
 </div>
 </div>
 <div id="functions-3-graphical-data-exploration" class="section level1 tabset tabset-pills">
