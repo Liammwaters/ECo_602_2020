@@ -239,42 +239,52 @@ hist(norm_300, main = "Histogram of random points n = 300", sub = "mean = 10.4, 
 ```
 
         
-## `plot()`
-plot() required arguments:
-        col =
-        pch =
-        cex =
-        main =
-        xlab =
-        ylab =
-        xlim =
-        ylim =
-    hist() required arguments:
-        breaks =
-    boxplot()
-        Your must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
 
 
 
 ## `plot()` 
 
-I can use `plot()` to create scatterplots!
+Used to create scatterplots. There are lots of arguments to customize the output, some of which are shown here.
+
+- `main = ` is the main title.
+- `xlab = ` and `ylab = ` are the x-axis label and y-axis label respectively.
+- `xlim = ` and `ylim = ` take a `c()` with the lower and upper limits for the x-axis and y-axis.
+- `cex = ` takes an integer (1 is the default) for the magnification of the plot components.
+- `pch = ` sets the shape of the points on the scatterplot. Takes a numeric input.
+- `col = ` defines the color of the points, can take a string value as long as it matches one that is in the system. A list of colors can be found at: https://github.com/Liammwaters/ECo_602_2020/blob/d3525acbbf5f4fc3bc82457be59d0539cabe94a0/data/Rcolor.pdf
+
 
 ```{r scatterplot_1, fig.asp=1.0}
 
 #to load a package, use `require()`
 require(palmerpenguins)
 
-#formula notation
+#formula notation uses the `~`
 
-plot(bill_length_mm ~ body_mass_g, data = penguins, pch = 16)
+plot(bill_length_mm ~ body_mass_g, data = penguins,
+     main = "penguin bill length as expressed by body mass",
+     xlab = "body mass in grams",
+     ylab = "bill length in mm",
+     xlim = c(4200, 6500),
+     ylim = c(32, 63),
+     cex = 1.5,
+     pch = 16,
+     col = "green"
+)
 
 
 ```
 
 
 
+## `hist`
 
+Used to create histograms. Similar customization arguments as `plot()`. One new one is `breaks = ` which 
+       
+    hist() required arguments:
+        breaks =
+    boxplot()
+        Your must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
 
 
 

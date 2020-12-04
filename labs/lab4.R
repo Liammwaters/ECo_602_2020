@@ -246,7 +246,8 @@ line_point_slope = function(x, x1, y1, slope)
       
       dat = data.frame(x = x, y_observed = rnorm(n_pts))
       
-      plot(y_observed ~ x, data = dat, pch = 5, col = "green", main = "linear fit of scatter_2: \n random points, n = 82", sub = "set.seed = 321")
+      plot(y_observed ~ x, data = dat, pch = 5, col = "green", 
+           main = "linear fit of scatter_2: \n random points, n = 82", sub = "set.seed = 321")
     
     guess_x = 5
     guess_y = 0
