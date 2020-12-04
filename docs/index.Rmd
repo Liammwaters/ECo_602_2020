@@ -218,24 +218,20 @@ sd(num_vec)
 
 `par()` is used to set graphical parameters. For this class `par()` was always used in conjunction with the argument `mfrow = ` and a `c()` vector to display multiple charts on a single image.
         
-```{r par_eg_1}
-#creating the data for the first histogram
+```{r par_eg_1, fig.asp=1.0}
+#creating the data for the top histogram
 n = 30
-mean = 10.4
-sd = 2.4
-norm_30 = rnorm(n, mean, sd)
+norm_30 = rnorm(n)
 
-#creating the data for the second histogram
+#creating the data for the bottom histogram
 n = 300
-mean = 10.4
-sd = 2.4
-norm_300 = rnorm(n, mean, sd)
+norm_300 = rnorm(n)
 
 
 par(mfrow = c(2,1)) #the first number is rows and the second number is columns
 
-hist(norm_30, main = "Histogram of random points n = 30", sub = "mean = 10.4, sd = 2.4")
-hist(norm_300, main = "Histogram of random points n = 300", sub = "mean = 10.4, sd = 2.4")
+hist(norm_30, main = "Histogram of random points n = 30")
+hist(norm_300, main = "Histogram of random points n = 300")
 ```
 
         
@@ -246,7 +242,8 @@ hist(norm_300, main = "Histogram of random points n = 300", sub = "mean = 10.4, 
 
 Used to create scatterplots. There are lots of arguments to customize the output, some of which are shown here.
 
-- `main = ` is the main title.
+- `main = ` is the main title. It get bolded and is displayed across the top of the image.
+- `sub = ` is the subtitle. It goes on the bottom underneath the x-axis label.
 - `xlab = ` and `ylab = ` are the x-axis label and y-axis label respectively.
 - `xlim = ` and `ylim = ` take a `c()` with the lower and upper limits for the x-axis and y-axis.
 - `cex = ` takes an integer (1 is the default) for the magnification of the plot components.
@@ -263,6 +260,7 @@ require(palmerpenguins)
 
 plot(bill_length_mm ~ body_mass_g, data = penguins,
      main = "penguin bill length as expressed by body mass",
+     sub = "this is the subtitle",
      xlab = "body mass in grams",
      ylab = "bill length in mm",
      xlim = c(4200, 6500),
@@ -277,22 +275,77 @@ plot(bill_length_mm ~ body_mass_g, data = penguins,
 
 
 
-## `hist`
+## `hist()`
 
-Used to create histograms. Similar customization arguments as `plot()`. One new one is `breaks = ` which 
+Used to create histograms. Similar customization arguments as `plot()`. One new one is `breaks = ` which which can be used to set the width of each bar, or column, in the histogram. It can take the form of:
+- A single number for the the number of bars (but R treats this as mearly a suggestion and will ignore you if it thinks that will be ugly for some reason)
+- A `c()` giving the breakpoints between bars (which R will not ignore) 
        
-    hist() required arguments:
-        breaks =
-    boxplot()
-        Your must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
+```{r hist_eg_1, fig.asp=1.0}
+#creating the data for the histogram
+n = 30
+norm_30 = rnorm(n)
 
+#example 1, with breaks = a single numeric suggestion
+hist(norm_30, main = "Histogram of random points n = 30", breaks = 17)
+
+#example 2, with breaks = a specific vector
+hist(norm_30, main = "Histogram of random points n = 30", breaks = c(-3, -2, -1, 0, 1, 2, 3))
+```
+
+
+
+
+## `boxplot()`
+
+Used to create a box-and-whisker plot of the data.
+        You must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
+
+```{r boxplot_eg_1, fig.asp=1.0}
+
+#to load a package, use `require()`
+require(palmerpenguins)
+
+#simple boxplot
+boxplot(penguins$bill_length_mm, main = "combined penguin bill length", ylab = "bill length in mm")
+
+#conditional boxplot that separates the bill length by the species of penguin
+boxplot(
+  bill_length_mm ~ species, data = penguins,
+  main = "penguin bill length separated by species",
+  ylab = "bill length in mm"
+)
+```
 
 
 
 
 # Functions 4: Distribution Functions {.tabset .tabset-pills}
 
-See the final project description for a list of the required functions.
+These are all closely related functions, the first set for normally distributed data, the second set for binomially distributed data.
+
+## `dnorm()`
+
+Gives the density 
+
+## `pnorm()`
+
+Gives the distribution
+
+## `qnorm()` 
+
+Gives the quantiles
+
+
+## `dbinom()`
+
+
+
+## `pbinom()`
+
+
+## `qbinom()`
+
 
 
 
