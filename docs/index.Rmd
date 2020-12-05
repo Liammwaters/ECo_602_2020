@@ -1,7 +1,7 @@
 ---
 title: "ECo 602 - Analysis of Environmental Data"
 subtitle: "Final Project"
-author: "Your Name Here"
+author: "Liam Waters"
 date: "Fall 2020"
 output:
   html_document:
@@ -20,7 +20,6 @@ options(knitr.duplicate.label = TRUE)
 ```
 
 
-Everything above this line is the header.
 
 
 <!-- The following text won't be displayed in your document.  It tells R how to make nicer looking buttons for your tabbed content. -->
@@ -41,30 +40,13 @@ Everything above this line is the header.
 </style>
 
 
-Use this document as a template to build your final project.
-
-If you've already created the file index.Rmd in your docs folder, you can paste everything below the header into that document.
-
-If you don't yet have an index.Rmd file, save this document as index.Rmd in the docs folder of your main class folder.
-
-Edit this template to fill in your own content.
-
 
 # Introduction
 
-This is an overview of most of the r stats features that were covered in ECo 602/634 and how to use them.
+This is an overview of most of the R stats features that were covered in ECo 602/634 and how to use them. This page is a work in progress and will likely be updated again in the future to be more comprehensive and perhaps more visually appealing.
 
 
 # Functions 1: Data Structure Functions {.tabset .tabset-pills}
-
-Look at the source code for the final project template, you'll notice the text:
-
-{.tabset .tabset-pills}
-
-This creates tabbed content for all the following sections that are one-level below.
-
-- If you include them on a primary header (one #), all of the subsequent secondary headers will in tabs.
-
 
 
 
