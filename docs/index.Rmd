@@ -449,7 +449,39 @@ This section will be a complete data analysis of the delomys data set.
 
 ## Numerical Exploration
 
+```{r numerical_exploration}
+
+#read in the data
+require(here)
+dat_del = read.csv(here("data", "delomys.csv"))
 
 
+#get stats for the body mass column...
+summary(dat_del$body_mass)
+#...and for the body length
+summary(dat_del$body_length)
+
+#test for normalicy
+shapiro.test(dat_del$body_mass)
+shapiro.test(dat_del$body_length)
 
 
+```
+
+
+## Graphical Exploration {.tabset .tabset-pills}
+
+
+### scatterplot of body mass and bill length
+
+
+```{r graphical_ex, fig.asp= 0.8}
+
+require(palmerpenguins)
+plot(bill_length_mm ~ body_mass_g, data = penguins)
+```
+
+
+### histogram of body mass
+
+## 
