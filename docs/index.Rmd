@@ -448,7 +448,7 @@ This section will be a complete data analysis of the delomys data set.
 # Data Exploration
 
 ## Numerical Exploration
-
+The `shapiro.test()` provides a numeric test of normalicy with the null hypothesis being that the data is normally distributed.
 ```{r numerical_exploration}
 
 #read in the data
@@ -479,7 +479,7 @@ shapiro.test(dat_del$body_length)
 ```{r graphical_ex, fig.asp= 0.8}
 
 plot(body_mass ~ body_length, data = dat_del,
-     col = "green",
+     col = "darkslategray4",
      pch = 16)
 ```
 
@@ -488,7 +488,7 @@ plot(body_mass ~ body_length, data = dat_del,
 
 ```{r mass_hist_1}
 hist(dat_del$body_mass, 
-     breaks = 80,
+     breaks = 80, # narrows the bars of the histogram so that there is less binning of values
      main = "Histogram of Delomys body mass", 
      xlab = "body mass g")
 ```
@@ -546,22 +546,27 @@ Qualitatively describe the relationship between body mass and length.
 
 - Does the relationship seem linear, curved, nonexistent?
 
-    
+*Overall there is a fairly strong linear relationship between body mass and body length. This relationship breaks down at the ends a bit, with individuals that are shorter than ~55mm and longer than ~150mm not folowing the same linear slope. I feel like this isn't uncommon to see with the fringe data in a dataset however.*
+
+  
 ### 2 
 Qualitatively describe the shapes of the histograms.
 
 - Do the data appear normally-distributed? Explain why or why not.
+
+*Both the body mass and body length histograms show data that appears to be mostly normally distributed. The body length data does have some outlying data points that are beyond the expected spread or normal data, but overall  both data sets have a strong peak in the middle and a mostly evenly tapered spread outward from the mean. I'd say that the data can be treated as normal due to the fact that it is just a small fraction of points that don't conform.*
 
 ### 3
 Using both the histograms and normality tests, do you think the (unconditioned) body masses and body length are normally-distributed?
 
 - Contrast your visual assessment of normality to the results of the numerical normality tests.
 
+*The results from the `shapiro.test()` confirm my visual interpretation of the data being normally distributed. Both the body mass and body length data returned p-values of much less than 0.05.*
     
 ### 4 
 Examine the conditional boxplots. Describe any graphical evidence you see for body mass differences based on species and/or sex.
 
-
+*The boxplot of body mass by species shows that D. dorsalis is a few grams heavier, on average, than D. sublineatus.The boxplot of body mass by sex shows that males are a few grams heavier, on average, than females. The boxplot of body mass by species and sex shows that the relationship is similar across species and sex.*
 
 
 
