@@ -461,8 +461,9 @@ summary(dat_del$body_mass)
 #...and for the body length
 summary(dat_del$body_length)
 
-#test for normalicy
+#test for normalicy in the body mass data
 shapiro.test(dat_del$body_mass)
+#test for normalicy in the body length data
 shapiro.test(dat_del$body_length)
 
 
@@ -472,16 +473,96 @@ shapiro.test(dat_del$body_length)
 ## Graphical Exploration {.tabset .tabset-pills}
 
 
-### scatterplot of body mass and bill length
+### scatterplot of body mass and body length
 
 
 ```{r graphical_ex, fig.asp= 0.8}
 
-require(palmerpenguins)
-plot(bill_length_mm ~ body_mass_g, data = penguins)
+plot(body_mass ~ body_length, data = dat_del,
+     col = "green",
+     pch = 16)
 ```
 
 
 ### histogram of body mass
+
+```{r mass_hist_1}
+hist(dat_del$body_mass, 
+     breaks = 80,
+     main = "Histogram of Delomys body mass", 
+     xlab = "body mass g")
+```
+
+
+
+### histogram of body length
+
+```{r length_hist_1}
+hist(dat_del$body_length,
+     breaks = 80, # narrows the bars of the histogram so that there is less binning of values
+     main = "Histogram of Delomys body length", 
+     xlab = "body length mm")
+
+```
+
+
+### boxplot of body mass, conditioned on species
+
+```{r mass_sp_box_1}
+boxplot(body_mass ~ binomial, data = dat_del,
+        main = "Body mass by species",
+        xlab = "species",
+        ylab = "body mass g")
+```
+
+
+### boxplot of body mass, conditioned on sex
+
+```{r mass_sex_box_1}
+boxplot(body_mass ~ sex, data = dat_del,
+        main = "Body mass by sex",
+        ylab = "body mass g")
+```
+
+### boxplot of body mass, conditioned on both species and sex
+
+```{r mass_sp_sex_box_1}
+boxplot(body_mass ~ binomial + sex, data = dat_del,
+        main = "Body mass by species and sex",
+        xlab = " ",
+        ylab = "body mass g",
+        names = list("D. dorsalis\n female", 
+                     "D. sublineatus\n female", 
+                     "D. dorsalis\n male", 
+                     "D. sublineatus\n male"))  #the \n inserts a line break so that the name is continued below. In this case it is needed to make the name shorter so that they are all displayed.
+
+```
+
+
+## Questions {.tabset .tabset-pills}
+
+### 1
+Qualitatively describe the relationship between body mass and length.
+
+- Does the relationship seem linear, curved, nonexistent?
+
+    
+### 2 
+Qualitatively describe the shapes of the histograms.
+
+- Do the data appear normally-distributed? Explain why or why not.
+
+### 3
+Using both the histograms and normality tests, do you think the (unconditioned) body masses and body length are normally-distributed?
+
+- Contrast your visual assessment of normality to the results of the numerical normality tests.
+
+    
+### 4 
+Examine the conditional boxplots. Describe any graphical evidence you see for body mass differences based on species and/or sex.
+
+
+
+
 
 ## 
