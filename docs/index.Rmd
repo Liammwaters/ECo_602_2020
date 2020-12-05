@@ -233,7 +233,7 @@ Used to create scatterplots. There are lots of arguments to customize the output
 - `col = ` defines the color of the points, can take a string value as long as it matches one that is in the system. A list of colors can be found at: https://github.com/Liammwaters/ECo_602_2020/blob/d3525acbbf5f4fc3bc82457be59d0539cabe94a0/data/Rcolor.pdf
 
 
-```{r scatterplot_1, fig.asp=1.0}
+```{r scatterplot_1}
 
 #to load a package, use `require()`
 require(palmerpenguins)
@@ -263,7 +263,7 @@ Used to create histograms. Similar customization arguments as `plot()`. One new 
 - A single number for the the number of bars (but R treats this as mearly a suggestion and will ignore you if it thinks that will be ugly for some reason)
 - A `c()` giving the breakpoints between bars (which R will not ignore) 
        
-```{r hist_eg_1, fig.asp=1.0}
+```{r hist_eg_1}
 #creating the data for the histogram
 n = 30
 norm_30 = rnorm(n)
@@ -283,7 +283,7 @@ hist(norm_30, main = "Histogram of random points n = 30", breaks = c(-3, -2, -1,
 Used to create a box-and-whisker plot of the data.
         You must include two examples: a simple boxplot (i.e. one box) and a conditional boxplot (i.e. a single plot that has multiple boxes, conditioned on a categorical variable).
 
-```{r boxplot_eg_1, fig.asp=1.0}
+```{r boxplot_eg_1}
 
 #to load a package, use `require()`
 require(palmerpenguins)
@@ -647,4 +647,111 @@ Are violations of the normality assumption equally severe for all of the models?
 *No. The shapiro test results in a p-value of less than 0.05 for all of the models, but fit1 has an extremely low p-value, while fit2 is quite a bit higher despite still being well lower than 0.05. Fit3, fit4, and fit5 are all in the middle and extremely similar.*
 
 
-## 
+
+
+
+# Model Interpretation
+
+## Body Length
+
+```{r fit_1_sum}
+#this makes a nicer summary output and rounds the decimal
+knitr::kable(coef(summary(fit1)), digits = 4)
+```
+
+### Questions
+- What is the magnitude of the mass/length relationship?
+  - *0.875 g/mm*
+  
+- What is the expected body length of an an animal that weighs 100g?
+  - *163.6 mm*
+
+- What is the expected body length of an animal that weighs 0g?
+  - *76.125 mm*
+
+
+
+
+## Body Mass: Model Coefficients
+
+
+```{r mass_fit_sum}
+#base level for sex
+knitr::kable(coef(summary(fit2)), digits = 4)
+
+#base level for species
+knitr::kable(coef(summary(fit3)), digits = 4)
+
+```
+
+
+### Questions
+
+- What is the base level for sex?
+  - *Female*
+  
+- What is the base level for binomial?
+  - *D. dorsalis*
+
+- Which sex is heavier?
+  - *Males*
+
+- Which species is heavier?
+  - *D. sublineatus*
+
+
+
+## Body Mass: ANOVA 
+
+```{r mass_anova}
+knitr::kable(anova(fit2), digits = 4)
+knitr::kable(anova(fit3), digits = 4)
+
+knitr::kable(anova(fit4), digits = 4)
+
+knitr::kable(anova(fit5), digits = 4)
+
+```
+
+
+
+### Questions
+
+- Are sex and species significant predictors for body mass?
+  - *Yes, both sex and species are significant predictors for body mass since they both have p-values of less than 0.05 and high mean square values.*
+
+- Is there a significant interaction?
+  - *No, there is not a significant interaction since the p-value is very high and the mean squares is very low.*
+
+- Does the significance (as measured by p-value) of either of the main effects (sex and species) differ much between the single-predictor models, the additive model, and the interactive model?
+  - *No, not really. There is a slight change (0.0001 higher) in the p-value for sex in the single predictor model, but that's it.*
+
+
+
+
+
+# Model Comparison: Body Mass
+
+You built four different models of body mass. How do you choose the best one?
+
+One option is to choose the model with the lowest AIC. You can calculate AIC using the appropriately named AIC() function.
+
+```{r aic}
+AIC(fit1, fit2, fit3, fit4, fit5)
+```
+
+
+### Questions
+
+- Which two models have the lowest AIC?
+  - *fit1 has the lowest AIC, and fit 4 the second lowest, though fit5 is practically identical.*
+  
+- Which of the two models with lowest AIC scores would you select? (Explain your decision based on model fit and the complexity/understanding tradeoff.)
+  - *I guess I'd stick with fit1. Its AIC was the lowest, and it is a nice and simple model. I don't see a reason to pick fit5 and its AIC was basically identical to fit4 which I guess makes me more hesitant to pick fit4.*
+  
+  
+  
+  
+  
+  
+
