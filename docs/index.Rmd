@@ -448,7 +448,7 @@ This section will be a complete data analysis of the delomys data set.
 # Data Exploration
 
 ## Numerical Exploration
-The `shapiro.test()` provides a numeric test of normalicy with the null hypothesis being that the data is normally distributed.
+The `shapiro.test()` provides a numeric test of normality with the null hypothesis being that the data is normally distributed. If the returned p-value is less than 0.05, then there is evidence that you can reject the null.
 ```{r numerical_exploration}
 
 #read in the data
@@ -461,9 +461,9 @@ summary(dat_del$body_mass)
 #...and for the body length
 summary(dat_del$body_length)
 
-#test for normalicy in the body mass data
+#test for normality in the body mass data
 shapiro.test(dat_del$body_mass)
-#test for normalicy in the body length data
+#test for normality in the body length data
 shapiro.test(dat_del$body_length)
 
 
@@ -539,7 +539,7 @@ boxplot(body_mass ~ binomial + sex, data = dat_del,
 ```
 
 
-## Questions {.tabset .tabset-pills}
+## Delomys Data Exploration Questions {.tabset .tabset-pills}
 
 ### 1
 Qualitatively describe the relationship between body mass and length.
@@ -554,19 +554,83 @@ Qualitatively describe the shapes of the histograms.
 
 - Do the data appear normally-distributed? Explain why or why not.
 
-*Both the body mass and body length histograms show data that appears to be mostly normally distributed. The body length data does have some outlying data points that are beyond the expected spread or normal data, but overall  both data sets have a strong peak in the middle and a mostly evenly tapered spread outward from the mean. I'd say that the data can be treated as normal due to the fact that it is just a small fraction of points that don't conform.*
+*Both the body mass and body length histograms show data that appears to be mostly normally distributed. The body length data do have some outlying data points that are beyond the expected spread or normal data, but overall  both data sets have a strong peak in the middle and a mostly evenly tapered spread outward from the mean. The trailing tail of outliying values in the body length data is a bit worrysome, but I'd say that the data can still be treated as normal due to the fact that it is just a small fraction of points that don't conform.*
 
 ### 3
 Using both the histograms and normality tests, do you think the (unconditioned) body masses and body length are normally-distributed?
 
 - Contrast your visual assessment of normality to the results of the numerical normality tests.
 
-*The results from the `shapiro.test()` confirm my visual interpretation of the data being normally distributed. Both the body mass and body length data returned p-values of much less than 0.05.*
+*The results from the `shapiro.test()` seem to say that my visual interpretation of the data being normally distributed was quite wrong. The p-values for both the body mass and body length data were much less than 0.05 that allows the rejection of normality. I'm honestly surprised that data that appears this normal can have such a low p-value.*
     
 ### 4 
 Examine the conditional boxplots. Describe any graphical evidence you see for body mass differences based on species and/or sex.
 
-*The boxplot of body mass by species shows that D. dorsalis is a few grams heavier, on average, than D. sublineatus.The boxplot of body mass by sex shows that males are a few grams heavier, on average, than females. The boxplot of body mass by species and sex shows that the relationship is similar across species and sex.*
+*The boxplot of body mass by species shows that D. dorsalis are a few grams heavier, on average, than D. sublineatus.The boxplot of body mass by sex shows that males are a few grams heavier, on average, than females. The boxplot of body mass by species and sex shows that the relationship is similar across species and sex.*
+
+
+
+
+# Model Building
+
+```{r lm_build_1}
+
+#Model 1: simple linear regression
+fit1 = lm(body_length ~ body_mass, data = dat_del)
+
+#Model 2: 1-way ANOVA
+fit2 = lm(body_mass ~ sex, data = dat_del)
+
+#Model 3: 1-way ANOVA
+fit3 = lm(body_mass ~ binomial, data = dat_del)
+
+#Model 4: 2-way additive ANOVA
+fit4 = lm(body_mass ~ sex + binomial, data = dat_del)
+
+#Model 5: 2-way factorial ANOVA
+fit5 = lm(body_mass ~ sex * binomial, data = dat_del)
+```
+
+# Model Diagnostics
+
+### Graphical Normality of Residuals Check
+
+You can use the `residuals()` function to calculate the residuals of a model, and the `hist()` function to plot them to check for normality.
+
+- The `breaks =` argument was used to reduce the binning of values.
+
+```{r fit_resids_1}
+hist(residuals(fit1), breaks = 80)
+
+hist(residuals(fit2), breaks = 80)
+
+hist(residuals(fit3), breaks = 80)
+
+hist(residuals(fit4), breaks = 80)
+
+hist(residuals(fit5), breaks = 80)
+
+```
+
+
+
+### Numerical Normality of Residuals Check
+
+The `shapiro.test()` can be used to check the normality of the model residuals as well.
+
+```{r shapiro_resids_1}
+shapiro.test(residuals(fit1))
+
+shapiro.test(residuals(fit2))
+
+shapiro.test(residuals(fit3))
+
+shapiro.test(residuals(fit4))
+
+shapiro.test(residuals(fit5))
+```
+
+
 
 
 
