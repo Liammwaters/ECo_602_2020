@@ -632,6 +632,19 @@ shapiro.test(residuals(fit5))
 
 
 
+## Model Diagnostics Questions {.tabset .tabset-pills}
+
+### 1
+
+What do you conclude about residual normality based on the numerical and graphical diagnostics?
+
+*I conclude that data can look very normal while still testing as non-normal. I guess I would have a hard time arguing against p-values that are this low and trying to say that these residuals are normally distributed. If I was trying to publish research and came across this situation, I feel like I'd have to treat it as non-normal. That said, I think I remember that the functions and models that assume normality are fairly forgiving, and so I would probably run these data as if they were normal as well, just to see how the results differed.*
+
+### 2
+
+Are violations of the normality assumption equally severe for all of the models?
+
+*No. The shapiro test results in a p-value of less than 0.05 for all of the models, but fit1 has an extremely low p-value, while fit2 is quite a bit higher despite still being well lower than 0.05. Fit3, fit4, and fit5 are all in the middle and extremely similar.*
 
 
 ## 
