@@ -322,22 +322,59 @@ boxplot(
 
 # Functions 4: Distribution Functions {.tabset .tabset-pills}
 
-These are all closely related functions, the first set is for normally distributed data, the second set is for binomially distributed data.
+These are all closely related functions, the first set is for normally distributed data, the second set is for binomially distributed data. Default values: `mean = 0` and `sd = 1`
 
 ## `dnorm()`
 
-Gives the density 
+Gives the value of the probability density function of the normal distribution. Used for continuous data.(the value is taken from the height of the curve at the x-value)
+
+```{r dnorm_eg_1}
+
+#create data values
+#let's say that this represents length measurements from fish in a pond
+x = seq(0, 20, length.out = 1000)
+
+#use `dnorm()` to show the probability density (y-value on the chart) and set the mean and sd values
+y = dnorm(x, mean = 10, sd = 3)
+
+#plot the results
+plot(x, y, main = "Normal PDF with mean of 10 and sd = 3", type = "l")
+  
+```
+
 
 ## `pnorm()`
 
-Gives the distribution
+Gives the value of the cumulative density function of the normal distribution. (the area under the curve to the left of the x-value unless `lower.tail = FALSE` in which case it is the area to the right of x.)
+
+```{r pnorm_eg_1}
+#create data
+#to find percentage of fish smaller than 12cm in a pond where the mean = 10cm and sd = 3
+pnorm(12, 10, 3)
+```
+
 
 ## `qnorm()` 
 
-Gives the quantiles
+Returns the quantile for a given probability. The inverse of `pnorm()`
+
+```{r qnorm_eg_1}
+#create data
+#to find the quantile of a fish with the probability of 0.75 of being smaller than 24cm in a pond where the mean = 42cm and sd = 3
+qnorm(0.75, 10, 3)
+```
+
 
 
 ## `dbinom()`
+
+Returns the probability of success from a set of trials when each trial has the same probability of success. 
+
+```{r dbinom_eg_1}
+
+dbinom(dat_all$WIWR, 6, .75)
+```
+
 
 
 
@@ -345,6 +382,7 @@ Gives the quantiles
 
 
 ## `qbinom()`
+
 
 
 
@@ -372,6 +410,8 @@ summary(dat_gen$species)
 ```
 
 
+
+
 ## `library()` and `require()`
 
 These have already come up in previous code examples. Both `library()` and `require()` load R packages that have already been installed with `install.packages()` so that they can be accessed for use. `library()` returns an error if the package isn't installed and `require()` returns a warning.
@@ -386,6 +426,22 @@ library(pillar)
 
 
 ## `read.csv()`
+
+Used to load data from a .csv file into a data frame.Needs either an exact file path, the relative file path if the .csv is stored in the working directory, or can be used with the `here()` function.
+
+
+```{r read.csv_eg_1}
+
+#load the "here()" function
+require(here)
+
+
+#this locates the "bird.sta.csv" file that is located in my "data" folder within my R project and assigns it to a new object called "dat_bird"
+dat_bird = read.csv(here("data", "bird.sta.csv"))
+
+#head() returns only the first few rows of the object.
+head(dat_bird)
+```
 
 
 
