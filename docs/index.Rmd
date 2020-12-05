@@ -371,8 +371,8 @@ qnorm(0.75, 10, 3)
 Returns the probability of success from a set of trials when each trial has the same probability of success. 
 
 ```{r dbinom_eg_1}
-
-dbinom(dat_all$WIWR, 6, .75)
+# what's the probability of having salamanders under 8 logs in 12 flips? *assume there are never more than one salamander under a log and that they are present under 60% of logs in this area
+dbinom(8, 12, 0.60)
 ```
 
 
@@ -380,10 +380,23 @@ dbinom(dat_all$WIWR, 6, .75)
 
 ## `pbinom()`
 
+Returns the probability of a value lower than the target. Again, can be reversed by adding `lower.tail = FALSE` as an argument.
+
+```{r pbinom_eg_1}
+# what's the probability that you find salamanders under fewer than 8 logs?
+pbinom(8, 12, 0.60)
+```
+
 
 ## `qbinom()`
 
+Returns the quantile value for a given probability per trial. 
 
+```{r qbinom_eg_1}
+
+# how many salamanders would you need to find to reach the 90th quantile if you flip 12 logs and theres salamanders under 60% of them?
+qbinom(0.90, 12, 0.60)
+```
 
 
 
