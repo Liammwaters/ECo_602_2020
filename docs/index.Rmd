@@ -446,6 +446,7 @@ head(dat_bird)
 This section will be a complete data analysis of the delomys data set.
 
 # Data Exploration
+
 ## Numerical Exploration
 
 
